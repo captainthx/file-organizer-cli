@@ -1,0 +1,10 @@
+{
+  ".jpg": "Images",
+  ".png": "Images",
+  ".txt": "Text",
+  ".pdf": "PDFs",
+  ".mp3": "Music",
+  ".zip": "Zip",
+  ".xlsx": "Xls",
+  ".docx": "Doc"
+}
