@@ -1,10 +1,10 @@
-# 🧰 File Organizer CLI - Usage Guide
+# 🛠️ File Organizer CLI - Usage Guide
 
 A command-line tool to organize files in a directory based on file extension.
 
 ---
 
-## 🎞️ Installation (Local)
+## 🎮 Installation (Local)
 
 You can run it directly using Go:
 
@@ -19,13 +19,26 @@ go build -o organizer main.go
 ./organizer [command] --dir path/to/folder
 ```
 
+If you'd like to install it globally:
+
+```bash
+go build -o organizer main.go
+sudo mv organizer /usr/local/bin/
+```
+
+Now you can run it anywhere:
+
+```bash
+organizer run --dir ~/Downloads
+```
+
 ---
 
 ## ⚙️ Commands
 
 ### 1. `run`
 
-จัดเรียงไฟล์จริงตามกฎใน `rules.json`
+📆 จัดเรียงไฟล์จริงตามกฎใน `rules.json`
 
 ```bash
 go run main.go run --dir ~/Downloads --rules rules.json
@@ -35,13 +48,14 @@ go run main.go run --dir ~/Downloads --rules rules.json
 
 * `--dir`, `-d` → โฟลเดอร์เป้าหมาย (จำเป็น)
 * `--rules`, `-r` → path ไปยัง rules.json (ค่า default: `rules.json`)
-* `--interactive`, `-i` → โหมดยืนยันก่อนย้าย แต่ละfile
+* `--interactive`, `-i` → โหมดยืนยันก่อย้าย แต่ละ file
 
 #### ตัวอย่าง:
 
 ```bash
 go run main.go run --dir ~/Downloads --interactive
 ```
+
 หรือ ถ้ามีชื่อ folder 2พยางค์
 
 ```bash
@@ -52,11 +66,12 @@ go run main.go run --dir ~/Downloads/Telegram\ Desktop --interactive
 
 ### 2. `preview`
 
-แสดงตัวอย่างไฟล์ที่จะถูกย้าย โดยไม่ย้ายจริง
+📅 แสดงตัวอย่างไฟล์ที่จะถึงย้าย โดยไม่ย้ายจริง
 
 ```bash
 go run main.go preview --dir ~/Downloads --rules rules.json
 ```
+
 หรือ ถ้ามีชื่อ folder 2พยางค์
 
 ```bash
@@ -75,13 +90,13 @@ go run main.go preview --dir ~/Downloads
 
 ### 3. `revert`
 
-ยกเลิกการจัดระเบียบไฟล์ครั้งล่าสุด โดยอ้างอิงจาก `history/moves.json`
+🔄 ยกเลิกการจัดระเบียบไฟล์ครั้งล่าสุด โดยอ้างอิงจาก `history/moves.json`
 
 ```bash
 go run main.go revert
 ```
 
-⚠️ ไฟล์จะถูกย้ายกลับตำแหน่งเดิม ถ้า history ยังไม่ถึง
+⚠️ ไฟล์จะถึงย้ายกลับตำแหน่งเดิม ถ้า history ยังไม่ถึง
 
 #### ตัวอย่าง:
 
@@ -99,7 +114,10 @@ go run main.go revert
   ".png": "Images",
   ".txt": "Text",
   ".pdf": "PDFs",
-  ".mp3": "Music"
+  ".mp3": "Music",
+  ".zip": "Zip",
+  ".xlsx": "Xls",
+  ".docx": "Doc"
 }
 ```
 
@@ -110,9 +128,11 @@ go run main.go revert
 ### จัดเรียงไฟล์ในโฟลเดอร์ `Downloads` ทันที
 
 ```bash
-go run main.go run --dir ~/Downloads 
+go run main.go run --dir ~/Downloads
 ```
+
 หรือ
+
 ### ใช้ interactive mode เพื่อยืนยัน Y/N
 
 ```bash
@@ -123,8 +143,8 @@ go run main.go run --dir ~/Downloads --interactive
 
 ```bash
 go run main.go preview --dir ~/Downloads
-
 ```
+
 หรือ ถ้ามีชื่อ folder 2พยางค์
 
 ```bash
@@ -137,19 +157,17 @@ go run main.go preview --dir ~/Downloads/Telegram\ Desktop
 go run main.go revert
 ```
 
-
-
 ---
 
 ## 📌 Tips
 
-* ควร run `preview` ก่อน `run` เสมอเพื่อความปลอดภัย
+* ควร run `preview` ก่อ `run` เสมอเพื่อความปลอดภัย
 * ปรับแต่ง `rules.json` ได้ตามต้องการ เช่น `.docx`, `.xlsx`, `.zip`
 
 ---
 
 ## 🥪 Testing
-
+****
 แนะนำให้ลองใช้กับโฟลเดอร์ทดสอบก่อน เพื่อป้องกันการสูญเสียไฟล์สำคัญ
 
 ---
